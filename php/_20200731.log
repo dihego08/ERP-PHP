@@ -1,0 +1,1 @@
+[2020-07-31T23:01:22.153622-04:00] _.ERROR: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' [] []

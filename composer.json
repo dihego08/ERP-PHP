@@ -1,0 +1,11 @@
+{
+    "name": "erp",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "monolog/monolog": "^2.0"
+    }
+}
