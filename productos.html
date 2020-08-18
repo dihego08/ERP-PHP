@@ -1,17 +1,3 @@
-<!--
-=========================================================
-* Paper Dashboard 2 - v2.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-2
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +15,10 @@ Coded by www.creative-tim.com
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 	<!-- CSS Files -->
-	<link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="../assets/demo/demo.css" rel="stylesheet" />
+	<link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -58,6 +44,12 @@ Coded by www.creative-tim.com
 						<a href="./dashboard.html">
 							<i class="nc-icon nc-bank"></i>
 							<p>Dashboard</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="./proveedores.html">
+							<i class="nc-icon nc-watch-time"></i>
+							<p>Proveedores</p>
 						</a>
 					</li>
 					<li class="active ">
@@ -194,10 +186,8 @@ Coded by www.creative-tim.com
 				                    	<thead class=" text-primary">
                                             <th>Producto</th>
                                             <th>Descripción</th>
-                                            <th>Precio Anterior</th>
                                             <th>Precio</th>
                                             <th>Categoria</th>
-                                            <th>Imagen</th>
                                             <th>Acciones</th>
 			                    		</thead>
 				                    	<tbody>
@@ -267,30 +257,11 @@ Coded by www.creative-tim.com
               				
             			</div>
             			<div class="form-row mt-2">
-              				<div class="col-md-4">
-            					<label>Precio Anterior</label>
-              					<input type="text" name="precio_anterior" id="precio_anterior" class="form-control">
-            				</div>
-              				<div class="col-md-8">
+              				<div class="col-md-12">
             					<label>Precio</label>
               					<input type="text" name="precio" id="precio" class="form-control">
             				</div>
             			</div>
-            			<div class="form-row mt-2">
-              				<label class="col-md-12">Imagen</label>
-              				<label for="file1">
-              					<input type="file" name="file1" id="file1" class="form-control" style="display: none;">
-              					<span class="btn btn-dark btn-sm"><i class="fa fa-camera-retro"></i></span>
-              				</label>
-                            <div class="w-100 text-center mt-3">
-                                <img src="" id="profile-img-tag" width="200px"/>
-                            </div>
-            			</div>
-                        <div class="col-md-12 mt-3">
-                            <progress id="progressBar" class="mt-2" value="0" max="100" style="width:100%;"></progress>
-                            <p id="status"></p>
-                            <p id="loaded_n_total"></p>
-                        </div>
           			</div>
         		</div>
         		<div class="modal-footer">
@@ -304,79 +275,27 @@ Coded by www.creative-tim.com
   	</div>
 
 	<!--   Core JS Files   -->
-	<script src="../assets/js/core/jquery.min.js"></script>
-	<script src="../assets/js/core/popper.min.js"></script>
-	<script src="../assets/js/core/bootstrap.min.js"></script>
-	<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	<script src="assets/js/core/jquery.min.js"></script>
+	<script src="assets/js/core/popper.min.js"></script>
+	<script src="assets/js/core/bootstrap.min.js"></script>
+	<script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Google Maps Plugin    -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<!-- Chart JS -->
-	<script src="../assets/js/plugins/chartjs.min.js"></script>
+	<script src="assets/js/plugins/chartjs.min.js"></script>
 	<!--  Notifications Plugin    -->
-	<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+	<script src="assets/js/plugins/bootstrap-notify.js"></script>
 	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-	<script src="../assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+	<script src="assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="../assets/demo/demo.js"></script>
-	<script>
-        function _(el){
-            return document.getElementById(el);
-        }
-        function uploadFile(){
-            var file = _("file1").files[0];
-            var formdata = new FormData();
-            formdata.append("file1", file);
-            formdata.append("id_curso", $("#id_curso").val());
-            formdata.append("id_tema", $("#id_tema").val());
-            formdata.append("tarea", $("#tarea").val());
-            formdata.append("fecha_entrega", $("#fecha_entrega").val());
-            formdata.append("parAccion", "guardar_tarea");
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandler, false);
-            ajax.addEventListener("load", completeHandler, false);
-            ajax.addEventListener("error", errorHandler, false);
-            ajax.addEventListener("abort", abortHandler, false);
-            ajax.open("POST", "../php/tarea.php");
-            ajax.send(formdata);
-        }
-        function progressHandler(event){
-            _("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBar").value = Math.round(percent);
-        }
-        function completeHandler(event){
-            get_productos();
-            $("#cerrar_formulario").click();
-            limpiar_formulario();
-            _("progressBar").value = 0;
-            
-        }
-        function errorHandler(event){
-            _("status").innerHTML = "Upload Failed";
-        }
-        function abortHandler(event){
-            _("status").innerHTML = "Upload Aborted";
-        }
-    </script>
+	<script src="assets/demo/demo.js"></script>
     <script>
         $(document).ready(function() {
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $("#profile-img-tag").attr("src", e.target.result);
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            $("#file1").change(function(){
-                readURL(this);
-            });
             fill_categorias();
             get_productos();
         });
         function fill_categorias(){
-        	$.post('php/cat_y_fam.php?parAccion=get_categorias', function(data) {
+        	$.post('php/categorias.php?parAccion=get_all', function(data) {
         		var obj = JSON.parse(data);
         		$.each(obj, function(index, val) {
         			$("#id_categoria").append(`
@@ -393,15 +312,13 @@ Coded by www.creative-tim.com
         }
         function get_productos(){
         	$("#tabla_categorias").find("tbody").empty();
-        	$.post('php/productos.php?parAccion=get_productos', function(data) {
+        	$.post('php/productos.php?parAccion=get_all', function(data) {
         		var obj = JSON.parse(data);
         		$.each(obj, function(index, val) {
         			$("#tabla_categorias").find("tbody").append(`
     					<tr>
-							<td>`+val.producto+`</td>
+							<td>`+val.nombre+`</td>
                             <td>`+val.descripcion+`</td>
-                            <td>`+val.precio_anterior+`</td>
-                            <td>`+val.precio+`</td>
                             <td>`+val.categoria+`</td>
     						<td class="text-center"><img src="/ogani/img/product/`+val.imagen+`" alt="" width="100" style="border-radius: 4px; box-shadow: 0px 2px 2px #333;" /></td>
     						<td>
@@ -415,7 +332,7 @@ Coded by www.creative-tim.com
         }
         function eliminar(id) {
             $.ajax({
-                url: "php/cat_y_fam.php?parAccion=eliminar_producto",
+                url: "php/productos.php?parAccion=eliminar_producto",
                 type: "POST",
                 dataType: "html",
                 data: {
@@ -445,13 +362,11 @@ Coded by www.creative-tim.com
                     "id": id,
                 },
                 success: function(data) {
-                    $("#producto").val(data.producto);
+                    $("#producto").val(data.nombre);
 		            $("#descripcion").val(data.descripcion);
-		            $("#precio_anterior").val(data.precio_anterior);
 		            $("#precio").val(data.precio);
                     
                     $("#id_categoria option[value="+data.id_categoria+"]").attr("selected", true);
-                    $("#profile-img-tag").attr("src", "/ogani/img/product/"+data.imagen);
 
 
                     $("#btn_finalizar").text("Actualizar");
@@ -462,44 +377,37 @@ Coded by www.creative-tim.com
             });
         }
         function guardar_producto(){
-            var file = _("file1").files[0];
-            var formdata = new FormData();
-            formdata.append("file1", file);
-
-            formdata.append('producto', $("#producto").val());
-            formdata.append('descripcion', $("#descripcion").val());
-            formdata.append('precio_anterior', $("#precio_anterior").val());
-            formdata.append('precio', $("#precio").val());
-            formdata.append('id_categoria', $("#id_categoria").val());
-            
-
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandler, false);
-            ajax.addEventListener("load", completeHandler, false);
-            ajax.addEventListener("error", errorHandler, false);
-            ajax.addEventListener("abort", abortHandler, false);
-            ajax.open("POST", "php/productos.php?parAccion=guardar_producto");
-            ajax.send(formdata);
+			$.post("php/productos.php?parAccion=guardar_producto", {
+				nombre: $("#producto").val(),
+				descripcion: $("#descripcion").val(),
+				precio: $("#precio").val(),
+				id_categoria: $("#id_categoria").val(),
+			}, function(data){
+				var obj = JSON.parse(data);
+				if(obj.Result == "OK"){
+					get_productos();
+					$("#cerrar_formulario").click();
+				}else{
+					alert("ERROR");
+				}
+			});
         }
         function actualizar_producto(id){
-            var file = _("file1").files[0];
-            var formdata = new FormData();
-            formdata.append("file1", file);
-
-            formdata.append('producto', $("#producto").val());
-            formdata.append('descripcion', $("#descripcion").val());
-            formdata.append('precio_anterior', ($("#precio_anterior").val() == null)? "0.00":$("#precio_anterior").val());
-            formdata.append('precio', $("#precio").val());
-            formdata.append('id_categoria', $("#id_categoria").val());
-
-            formdata.append("id", id);
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandler, false);
-            ajax.addEventListener("load", completeHandler, false);
-            ajax.addEventListener("error", errorHandler, false);
-            ajax.addEventListener("abort", abortHandler, false);
-            ajax.open("POST", "php/productos.php?parAccion=actualizar_producto");
-            ajax.send(formdata);
+            $.post("php/productos.php?parAccion=actualizar_producto", {
+				nombre: $("#producto").val(),
+				descripcion: $("#descripcion").val(),
+				precio: $("#precio").val(),
+				id_categoria: $("#id_categoria").val(),
+				id: id
+			}, function(data){
+				var obj = JSON.parse(data);
+				if(obj.Result == "OK"){
+					get_productos();
+					$("#cerrar_formulario").click();
+				}else{
+					alert("ERROR");
+				}
+			});
         }
     </script>
 </body>

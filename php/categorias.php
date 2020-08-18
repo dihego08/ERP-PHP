@@ -3,9 +3,9 @@
 	require_once '../vendor/autoload.php';
 	require_once '../config.php';
 
-	use App\Models\Producto;
+	use App\Models\Categoria;
 	use App\Container;
-	use App\Services\ProductoService;
+	use App\Services\CategoriaService;
 
 
 	Container::set('logger', function () {
@@ -16,16 +16,16 @@
 	    return $logger;
 	});
 	
-	$producto = new ProductoService;
+	$categoria = new CategoriaService;
 
 	$accion = $_GET['parAccion'];
 
 	if($accion == "get_all"){
-		echo json_encode($producto->getAll());
+		echo json_encode($categoria->getAll());
 	}elseif ($accion == "editar_producto") {
 		echo json_encode($producto->get(intval($_POST['id'])));
 	}elseif ($accion == "actualizar_producto") {
-		$new_producto = new Producto;
+		$new_producto = new Categoria;
 		$new_producto->nombre = $_POST['nombre'];
 		$new_producto->descripcion = $_POST['descripcion'];
 		$new_producto->id_categoria = $_POST['id_categoria'];
@@ -33,7 +33,7 @@
 		$new_producto->id = $_POST['id'];
 		echo json_encode($producto->update($new_producto));
 	}elseif ($accion == "guardar_producto") {
-		$new_producto = new Producto;
+		$new_producto = new Categoria;
 		$new_producto->nombre = $_POST['nombre'];
 		$new_producto->descripcion = $_POST['descripcion'];
 		$new_producto->id_categoria = $_POST['id_categoria'];

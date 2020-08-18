@@ -1,0 +1,2 @@
+[2020-08-17T22:44:52.623865-04:00] _.ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'erp.categorias' doesn't exist [] []
+[2020-08-17T22:47:16.418693-04:00] _.ERROR: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'erp.categorias' doesn't exist [] []
